@@ -1,0 +1,294 @@
+//
+//  ViewController.m
+//  camtest2
+//
+//  Created by Carter Crenshaw Howard Gray on 4/22/14.
+//  Copyright (c) 2014 ___FULLUSERNAME___. All rights reserved.
+//
+
+#import "ViewController.h"
+
+@interface ViewController (){
+    CMMotionManager *motionManager;
+}
+@property (strong, nonatomic) NSArray *array;
+
+@end
+
+@implementation ViewController
+@synthesize stillImageOutput, imageView;
+@synthesize pickerHeight, pickHeight, userHeight;
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.pickHeight = [[NSArray alloc] initWithObjects:@"test",@"5'5\"", @"5'6\"", @"5'7\"", @"5'8\"", @"5'9\"", @"5'10\"", @"5'11\"", @"6'0\"", @"6'1'\"", @"6'2\"", nil];
+    
+    
+    self.array= pickHeight;
+    
+    CMDeviceMotion *deviceMotion = motionManager.deviceMotion;
+    CMAttitude *attitude = deviceMotion.attitude;
+    referenceAttitude   = attitude;
+    
+    [motionManager startDeviceMotionUpdates];
+
+    
+    /*timer = [NSTimer scheduledTimerWithTimeInterval:1/30.0
+                                             target:self
+                                           selector:@selector(doGyroUpdate)
+                                           userInfo:nil
+                                            repeats:YES];*/
+    
+    
+   
+    
+    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+
+	// Do any additional setup after loading the view, typically from a nib.
+}
+
+
+
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self initializeCamera];
+}
+
+
+
+
+//AVCaptureSession to show live video feed in view
+- (void) initializeCamera {
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+	session.sessionPreset = AVCaptureSessionPresetPhoto;
+	
+	AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+    [captureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    
+	captureVideoPreviewLayer.frame = self.imageView.bounds;
+	[self.imageView.layer addSublayer:captureVideoPreviewLayer];
+	
+    UIView *view = [self imageView];
+    CALayer *viewLayer = [view layer];
+    [viewLayer setMasksToBounds:YES];
+    
+    CGRect bounds = [view bounds];
+    [captureVideoPreviewLayer setFrame:bounds];
+    
+    NSArray *devices = [AVCaptureDevice devices];
+    AVCaptureDevice *frontCamera;
+    AVCaptureDevice *backCamera;
+    
+    for (AVCaptureDevice *device in devices) {
+        
+        NSLog(@"Device name: %@", [device localizedName]);
+        
+        if ([device hasMediaType:AVMediaTypeVideo]) {
+            
+            if ([device position] == AVCaptureDevicePositionBack) {
+                NSLog(@"Device position : back");
+                backCamera = device;
+            }
+            else {
+                NSLog(@"Device position : front");
+                frontCamera = device;
+            }
+        }
+    }
+    
+    if (!FrontCamera) {
+        NSError *error = nil;
+        AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
+        if (!input) {
+            NSLog(@"ERROR: trying to open camera: %@", error);
+        }
+        [session addInput:input];
+    }
+    
+    if (FrontCamera) {
+        NSError *error = nil;
+        AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:frontCamera error:&error];
+        if (!input) {
+            NSLog(@"ERROR: trying to open camera: %@", error);
+        }
+        [session addInput:input];
+    }
+	
+    stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
+    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
+    [stillImageOutput setOutputSettings:outputSettings];
+    
+    [session addOutput:stillImageOutput];
+    
+	[session startRunning];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+- (void) useCamera:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera]){
+     _newMedia = YES;
+    
+    }
+        }
+
+
+//pickercode
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    // This method provides the data for a specific row in a specific component.
+    
+    
+    return [_array objectAtIndex:row];
+    
+}
+
+#pragma mark Picker Data Source Methods
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    
+    // This method returns the number of components we want in our Picker.
+    // The components are the colums.
+    
+    return 1;
+    
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    // This returns the number of rows in each component. We use the count of our array to determine the number of rows.
+    
+    return [_array count];
+    
+    
+}
+
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
+    
+    
+    switch(row)
+    {
+            
+        case 0:
+            switchHeight = 0;
+            
+            break;
+        case 1:
+            switchHeight = 4.7;
+            
+            break;
+        case 2:
+            switchHeight = 4.8;
+            
+            break;
+        case 3:
+            switchHeight = 4.9;
+            
+            break;
+        case 4:
+            switchHeight  = 5;
+            
+            break;
+        case 5:
+            switchHeight = 5.1;
+            
+        case 6:
+            switchHeight = 5.2;
+            
+        case 7:
+            switchHeight = 5.3;
+            
+        case 8:
+            switchHeight = 5.4;
+            
+        case 9:
+            switchHeight = 5.5;
+        case 10:
+            switchHeight = 5.5;
+            
+            break;
+    }
+    
+    
+    
+}
+
+
+//anglecode
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
+    
+    // Get the current device angle
+	float zz = [acceleration z];
+    float yy = -[acceleration y];
+	float angle = atan2(zz, yy);
+    
+    /*PickerView *pickerView = [[PickerView alloc] init];
+    float switchHeight = [pickerView getUserHeight];
+    chestLevel = switchHeight;*/
+    
+    
+    if(angle <= -0.1 && angle >= -1.57269){
+        
+        chestLevel = switchHeight;
+        angNumber = angle - 1.57269;
+        
+        q = chestLevel*tan(angNumber);
+        
+        NSInteger feet = (NSInteger)q;
+        CGFloat fraction = q - feet;
+        NSInteger inches = (NSInteger)(12.0 * fraction);
+        NSLog(@"%ld feet %ld inches", (long)feet,(long)inches);
+        
+        NSNumber *inch = [NSNumber numberWithInteger:inches];
+        
+        string2 = [NSString stringWithFormat:@"%@", inch];
+        
+        
+        
+        NSNumber *ft = [NSNumber numberWithInteger:feet];
+        
+        string1 = [NSString stringWithFormat:@"%@", ft];
+        
+        self.angDisplay.text = [NSString stringWithFormat :@"%@ feet %@ inches", string1, string2];
+        
+        
+        
+    }
+    
+    else if((angle <= -1.57269 && angle >= -3.1459265) || (angle >= 2.35619449019 && angle <= 3.1459265))
+	{
+		
+        
+        [_angDisplay setText:@"behind feet."];
+		
+	}
+	else if(angle >= -0.2 && angle <= 2.35619449019)
+	{
+		
+        
+        [_angDisplay setText:@"no upwards."];
+		
+    }
+    
+    
+}
+
+
+
+
+- (IBAction)infoPress:(id)sender {
+}
+@end
