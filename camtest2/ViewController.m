@@ -26,22 +26,25 @@
     [super viewDidLoad];
     
     //picker code
-    self.feetHeight= [[NSArray alloc] initWithObjects:@"feet", @"3", @"4", @"5", @"6", nil];
+    self.feetHeight= [[NSArray alloc] initWithObjects:@"Choose", @"3", @"4", @"5", @"6", nil];
     
     
-    self.inchHeight = [[NSArray alloc] initWithObjects:@"inches", @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10",@"11", nil];
+    self.inchHeight = [[NSArray alloc] initWithObjects:@"Height", @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10",@"11", nil];
     
-    self.distanceDisplay.text = @"Choose Height!";
+    _distanceDisplay.hidden = YES;
     self.pickerHeight.backgroundColor = [UIColor whiteColor];
     self.pickerHeight.dataSource = self;
     self.pickerHeight.delegate = self;
+    _inLabel.hidden = YES;
+    _ftLabel.hidden = YES;
 
     //angle code
     CMDeviceMotion *deviceMotion = motionManager.deviceMotion;
     CMAttitude *attitude = deviceMotion.attitude;
     referenceAttitude   = attitude;
     [motionManager startDeviceMotionUpdates];
-    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+     [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+    
     // freeze camera code
 	_imageCrosshairs.clipsToBounds = YES;
     captureImage.hidden = YES;
@@ -283,32 +286,56 @@
    
    
     
-    switchHeight = caseInches + caseFeet;
     
-    chestLevel = (switchHeight * 0.9);
-    NSLog(@"chestlevel is %f", chestLevel);
     
     switch(firstComponentRow) {
         case 0:
-            caseFeet = -1;
-            NSLog(@"0 feet");
+            caseFeet = 0;
+            _distanceDisplay.hidden = YES;
+            _chooseHeight.hidden = NO;
+            _ftLabel.hidden = YES;
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
             break;
         case 1:
             caseFeet = 3;
-            NSLog(@"3 feet");
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _ftLabel.hidden = NO;
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _ftLabel.hidden = NO;
             break;
         case 2:
             caseFeet = 4;
-            NSLog(@"4 feet");
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _ftLabel.hidden = NO;
             break;
         case 3:
             caseFeet = 5;
-            NSLog(@"5 feet");
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _ftLabel.hidden = NO;
             break;
         case 4:
             caseFeet = 6;
-            NSLog(@"6 feet");
-     
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _ftLabel.hidden = NO;
             break;
             
     }
@@ -316,53 +343,120 @@
     switch(secondComponentRow)
     {
         case 0:
-            caseInches = -1;
+            caseInches = 0;
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = YES;
+            _chooseHeight.hidden = NO;
+            _inLabel.hidden = YES;
             break;
         case 1:
             caseInches = 0;
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 2:
             caseInches = 0.08333333;
-         
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 3:
             caseInches = .166666666;
-          
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 4:
             caseInches = .25;
-  
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 5:
             caseInches  = .33333333;
-  
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 6:
             caseInches  = .41666666;
-    
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
         case 7:
             caseInches = .5;
-  
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 8:
             caseInches = .58333333;
-
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 9:
             caseInches = .66666666;
-      
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 10:
             caseInches = .75;
-        
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 11:
             caseInches  = .833333333;
-         
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
         case 12:
             caseInches  = .916666666;
-
+            switchHeight = caseInches + caseFeet;
+            
+            chestLevel = (switchHeight * 0.9);
+            _distanceDisplay.hidden = NO;
+            _chooseHeight.hidden = YES;
+            _inLabel.hidden = NO;
             break;
     }
     
@@ -379,12 +473,15 @@
 	float zz = [acceleration z];
     float yy = -[acceleration y];
 	float angle = atan2(zz, yy);
-    
+    if (caseFeet  == -1){
+            self.distanceDisplay.text = @"Choose Height";
+        }
+        else {
     if(angle <= -0.1 && angle >= -1.57269){
         
         angNumber = angle - 1.57269;
         
-        q = chestLevel*tan(.7);
+        q = chestLevel*tan(angNumber);
       
         NSInteger feet = (NSInteger)q;
         CGFloat fraction = q - feet;
@@ -399,11 +496,11 @@
         
         string1 = [NSString stringWithFormat:@"%@", ft0];
         
-        if ((feet || inches) != -1){
-            self.distanceDisplay.text = [NSString stringWithFormat :@"%@ feet %@ inches", string1, string2];
-        }
-        else{
+        if (feet + inches == 0){
             self.distanceDisplay.text = @"Choose Height!";
+        }
+        else {
+            self.distanceDisplay.text = [NSString stringWithFormat :@"%@ feet %@ inches", string1, string2];
         }
         
     }
@@ -423,6 +520,7 @@
         
 		
     }
+        }
     
 }
 
@@ -434,12 +532,20 @@
     if ((pickerHeight.hidden)) {
         
         pickerHeight.hidden = !pickerHeight.hidden;
+        
+        _ftLabel.hidden = NO;
+        _inLabel.hidden = NO;
         [sender setTitle:@"Done" forState:UIControlStateNormal];
+       
     
     } else if (!pickerHeight.hidden){
         
         pickerHeight.hidden = !pickerHeight.hidden;
+        
+        _ftLabel.hidden = YES;
+        _inLabel.hidden = YES;
         [sender setTitle:@"Height" forState:UIControlStateNormal];
+       
         
     }
     

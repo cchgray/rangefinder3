@@ -56,6 +56,9 @@
 @property(readonly, nonatomic) CMAttitude *attitude;
 @property (nonatomic, readonly) CGFloat *height;
 
+@property (weak, nonatomic) IBOutlet UILabel *ftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *inLabel;
+
 
 // images
 
@@ -71,6 +74,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *hidePicker;
 
 @property (weak, nonatomic) IBOutlet UILabel *distanceDisplay;
+@property (weak, nonatomic) IBOutlet UILabel *chooseHeight;
+
 @property (weak, nonatomic) IBOutlet UILabel *freezeDistanceDisplay;
 - (IBAction)infoButtonPress:(id)sender;
 

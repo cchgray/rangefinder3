@@ -25,7 +25,6 @@
 		4A8E63A519069C1F005762FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E638719069C1F005762FE /* UIKit.framework */; };
 		4A8E63AD19069C1F005762FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E63AB19069C1F005762FE /* InfoPlist.strings */; };
 		4A8E63AF19069C1F005762FE /* camtest2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E63AE19069C1F005762FE /* camtest2Tests.m */; };
-		4AC5C09D192A71530033B8A5 /* imgres.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AC5C09C192A71530033B8A5 /* imgres.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +62,6 @@
 		4A8E63AA19069C1F005762FE /* Range FinderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Range FinderTests-Info.plist"; sourceTree = "<group>"; };
 		4A8E63AC19069C1F005762FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4A8E63AE19069C1F005762FE /* camtest2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = camtest2Tests.m; sourceTree = "<group>"; };
-		4AC5C09C192A71530033B8A5 /* imgres.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imgres.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +91,6 @@
 		4A1A766B1926AFB7008E3293 /* cam2 images */ = {
 			isa = PBXGroup;
 			children = (
-				4AC5C09C192A71530033B8A5 /* imgres.jpg */,
 				4A1A766C1926AFB7008E3293 /* _imageSnowflake.png */,
 				4A1A766D1926AFB7008E3293 /* crosshair-md.png */,
 				4A1A766E1926AFB7008E3293 /* infobackground.jpg */,
@@ -256,7 +253,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AC5C09D192A71530033B8A5 /* imgres.jpg in Resources */,
 				4A8E639C19069C1F005762FE /* Images.xcassets in Resources */,
 				4A8E638E19069C1F005762FE /* InfoPlist.strings in Resources */,
 				4A1A766F1926AFB7008E3293 /* _imageSnowflake.png in Resources */,
