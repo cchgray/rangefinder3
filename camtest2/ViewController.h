@@ -64,6 +64,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageCrosshairs;
 @property (weak, nonatomic) IBOutlet UIButton *snowflakePress;
+@property (weak, nonatomic) IBOutlet UILabel *holdLabel;
 
 
 //hide buttons

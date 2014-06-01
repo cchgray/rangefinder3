@@ -31,6 +31,7 @@
     
     self.inchHeight = [[NSArray alloc] initWithObjects:@"Height", @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10",@"11", nil];
     
+    self.distanceDisplay.text = @"Press Done";
     _distanceDisplay.hidden = YES;
     self.pickerHeight.backgroundColor = [UIColor whiteColor];
     self.pickerHeight.dataSource = self;
@@ -43,7 +44,7 @@
     CMAttitude *attitude = deviceMotion.attitude;
     referenceAttitude   = attitude;
     [motionManager startDeviceMotionUpdates];
-     [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+    
     
     // freeze camera code
 	_imageCrosshairs.clipsToBounds = YES;
@@ -51,6 +52,7 @@
     FrontCamera = NO;
     captureImage.hidden = YES;
     [self initializeCamera];
+    _holdLabel.hidden = YES;
     
 }
 
@@ -199,7 +201,7 @@
     NSInteger feet = (NSInteger)q;
     CGFloat fraction = q - feet;
     NSInteger inches = (NSInteger)(12.0 * fraction);
-    NSLog(@"%ld feet %ld inches", (long)feet,(long)inches);
+   // NSLog(@"%ld feet %ld inches", (long)feet,(long)inches);
     
     NSNumber *inch0 = [NSNumber numberWithInteger:inches];
     
@@ -209,15 +211,12 @@
     
     string1 = [NSString stringWithFormat:@"%@", ft0];
     
-    if ((feet + inches) >> 0){
+   
         self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ feet %@ inches", string1, string2];
-    }
-    else{
-        self.freezeDistanceDisplay.text = @"Choose Height!";
-    }
+    
     _distanceDisplay.hidden = YES;
     _freezeDistanceDisplay.hidden = NO;
-    
+    _holdLabel.hidden= NO;
    
 }
 
@@ -228,6 +227,7 @@
 	haveImage = NO;
     _distanceDisplay.hidden = NO;
     _freezeDistanceDisplay.hidden = YES;
+    _holdLabel.hidden = YES;
 }
 
 
@@ -473,9 +473,10 @@
 	float zz = [acceleration z];
     float yy = -[acceleration y];
 	float angle = atan2(zz, yy);
-    if (caseFeet  == -1){
-            self.distanceDisplay.text = @"Choose Height";
-        }
+    
+    if (!pickerHeight.hidden){
+        self.distanceDisplay.text = @"Press Done";
+    }
         else {
     if(angle <= -0.1 && angle >= -1.57269){
         
@@ -545,7 +546,7 @@
         _ftLabel.hidden = YES;
         _inLabel.hidden = YES;
         [sender setTitle:@"Height" forState:UIControlStateNormal];
-       
+        [[UIAccelerometer sharedAccelerometer] setDelegate:self];
         
     }
     

@@ -146,6 +146,18 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(hold)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dX-ls-ZkP">
+                                <rect key="frame" x="246" y="465" width="44" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="8HW-Re-Yra"/>
+                                    <constraint firstAttribute="height" constant="21" id="lpc-YA-eSQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -166,10 +178,12 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UDC-TU-mqJ" secondAttribute="bottom" constant="20" id="SRb-ON-LhC"/>
                             <constraint firstItem="i7P-c0-IhD" firstAttribute="leading" secondItem="p1n-CV-6we" secondAttribute="trailing" constant="27" id="V9E-Vy-AdP"/>
                             <constraint firstItem="QG6-1B-vNW" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="80" id="aaH-og-uft"/>
+                            <constraint firstItem="i7P-c0-IhD" firstAttribute="top" secondItem="4dX-ls-ZkP" secondAttribute="bottom" constant="8" id="bcP-EO-xuv"/>
                             <constraint firstItem="2Lu-Z5-wf3" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="bg5-he-a9e"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7rU-RH-vD9" secondAttribute="trailing" constant="45" id="c8a-Ck-5Rp"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="p1n-CV-6we" secondAttribute="bottom" constant="20" id="hdb-OQ-JEo"/>
                             <constraint firstItem="i7P-c0-IhD" firstAttribute="leading" secondItem="toR-N2-GvD" secondAttribute="trailing" constant="27" id="hr1-uK-WcR"/>
+                            <constraint firstAttribute="trailing" secondItem="4dX-ls-ZkP" secondAttribute="trailing" constant="30" id="jrU-ZT-5LM"/>
                             <constraint firstAttribute="centerY" secondItem="rTr-CN-Ch0" secondAttribute="centerY" constant="0.5" id="lpT-Hb-FmN"/>
                             <constraint firstItem="rTr-CN-Ch0" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="103" id="qdG-hz-UMd"/>
                             <constraint firstAttribute="trailing" secondItem="YxR-fP-2ig" secondAttribute="trailing" constant="19" id="sEz-WK-w4w"/>
@@ -185,6 +199,7 @@
                         <outlet property="freezeDistanceDisplay" destination="UDC-TU-mqJ" id="BcB-Sm-lDB"/>
                         <outlet property="ftLabel" destination="QG6-1B-vNW" id="7Ja-Cn-8bU"/>
                         <outlet property="hidePicker" destination="YxR-fP-2ig" id="LFA-3M-seO"/>
+                        <outlet property="holdLabel" destination="4dX-ls-ZkP" id="sWG-Dv-hix"/>
                         <outlet property="imageCrosshairs" destination="rTr-CN-Ch0" id="2MO-0x-Jp5"/>
                         <outlet property="imageView" destination="sxU-i4-csu" id="3iA-SE-1Gs"/>
                         <outlet property="inLabel" destination="7rU-RH-vD9" id="MgV-dS-gkM"/>
