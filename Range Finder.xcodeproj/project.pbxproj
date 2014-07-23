@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A1D35721971C8AA00913161 /* pickerdarkbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A1D35711971C8AA00913161 /* pickerdarkbackground.png */; };
-		4A2F2DEB1971D62900E3C4D4 /* top of info.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F2DEA1971D62900E3C4D4 /* top of info.png */; };
-		4A55619D196DC2040091D707 /* snowflake.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A55619C196DC2040091D707 /* snowflake.png */; };
-		4A5561A3196DC3960091D707 /* greenbluebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5561A2196DC3960091D707 /* greenbluebackground.png */; };
-		4A5561A5196DC4560091D707 /* distance label.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5561A4196DC4560091D707 /* distance label.png */; };
 		4A5561A7196DDE070091D707 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A5561A6196DDE070091D707 /* QuartzCore.framework */; };
-		4A59B86E1970CB8500BBD2F6 /* final basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A59B8691970CB8500BBD2F6 /* final basketball.png */; };
-		4A59B86F1970CB8500BBD2F6 /* final dumb golfer.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A59B86A1970CB8500BBD2F6 /* final dumb golfer.png */; };
-		4A59B8701970CB8500BBD2F6 /* final smart golfer.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A59B86B1970CB8500BBD2F6 /* final smart golfer.png */; };
-		4A59B8711970CB8500BBD2F6 /* height stand chest.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A59B86C1970CB8500BBD2F6 /* height stand chest.png */; };
-		4A59B8721970CB8500BBD2F6 /* snowunit button instructions.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A59B86D1970CB8500BBD2F6 /* snowunit button instructions.png */; };
-		4A5A42B5196E0FC80055F245 /* metricswitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5A42B3196E0FC80055F245 /* metricswitch.png */; };
-		4A5A42B6196E0FC80055F245 /* usswitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5A42B4196E0FC80055F245 /* usswitch.png */; };
+		4A5AE35119805B150072A60E /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34319805B150072A60E /* back.png */; };
+		4A5AE35219805B150072A60E /* distance label.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34419805B150072A60E /* distance label.png */; };
+		4A5AE35319805B150072A60E /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34519805B150072A60E /* dot.png */; };
+		4A5AE35419805B150072A60E /* final basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34619805B150072A60E /* final basketball.png */; };
+		4A5AE35519805B150072A60E /* final dumb golfer.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34719805B150072A60E /* final dumb golfer.png */; };
+		4A5AE35619805B150072A60E /* final smart golfer.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34819805B150072A60E /* final smart golfer.png */; };
+		4A5AE35719805B150072A60E /* greenbluebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34919805B150072A60E /* greenbluebackground.png */; };
+		4A5AE35819805B150072A60E /* height stand chest.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34A19805B150072A60E /* height stand chest.png */; };
+		4A5AE35919805B150072A60E /* metricswitchbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34B19805B150072A60E /* metricswitchbtn.png */; };
+		4A5AE35A19805B150072A60E /* pickerdarkbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34C19805B150072A60E /* pickerdarkbackground.png */; };
+		4A5AE35B19805B150072A60E /* snowflake.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34D19805B150072A60E /* snowflake.png */; };
+		4A5AE35C19805B150072A60E /* snowunit button instructions.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34E19805B150072A60E /* snowunit button instructions.png */; };
+		4A5AE35D19805B150072A60E /* top of info.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE34F19805B150072A60E /* top of info.png */; };
+		4A5AE35E19805B150072A60E /* usswitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5AE35019805B150072A60E /* usswitch.png */; };
 		4A7C511C19228C1600CF373B /* InfoPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7C511B19228C1600CF373B /* InfoPage.m */; };
 		4A8E638419069C1F005762FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E638319069C1F005762FE /* Foundation.framework */; };
 		4A8E638619069C1F005762FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E638519069C1F005762FE /* CoreGraphics.framework */; };
@@ -35,8 +37,6 @@
 		4A8E63A519069C1F005762FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E638719069C1F005762FE /* UIKit.framework */; };
 		4A8E63AD19069C1F005762FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E63AB19069C1F005762FE /* InfoPlist.strings */; };
 		4A8E63AF19069C1F005762FE /* camtest2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E63AE19069C1F005762FE /* camtest2Tests.m */; };
-		4AA98B9B197062FF003CD5BA /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AA98B9A197062FF003CD5BA /* dot.png */; };
-		4AA98B9F19706649003CD5BA /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AA98B9E19706649003CD5BA /* back.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,19 +50,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4A1D35711971C8AA00913161 /* pickerdarkbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pickerdarkbackground.png; path = "../../range images 2.0/pickerdarkbackground.png"; sourceTree = "<group>"; };
-		4A2F2DEA1971D62900E3C4D4 /* top of info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "top of info.png"; path = "../../range images 2.0/top of info.png"; sourceTree = "<group>"; };
-		4A55619C196DC2040091D707 /* snowflake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snowflake.png; sourceTree = "<group>"; };
-		4A5561A2196DC3960091D707 /* greenbluebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenbluebackground.png; sourceTree = "<group>"; };
-		4A5561A4196DC4560091D707 /* distance label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance label.png"; sourceTree = "<group>"; };
 		4A5561A6196DDE070091D707 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4A59B8691970CB8500BBD2F6 /* final basketball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "final basketball.png"; path = "../../range images 2.0/final basketball.png"; sourceTree = "<group>"; };
-		4A59B86A1970CB8500BBD2F6 /* final dumb golfer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "final dumb golfer.png"; path = "../../range images 2.0/final dumb golfer.png"; sourceTree = "<group>"; };
-		4A59B86B1970CB8500BBD2F6 /* final smart golfer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "final smart golfer.png"; path = "../../range images 2.0/final smart golfer.png"; sourceTree = "<group>"; };
-		4A59B86C1970CB8500BBD2F6 /* height stand chest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "height stand chest.png"; path = "../../range images 2.0/height stand chest.png"; sourceTree = "<group>"; };
-		4A59B86D1970CB8500BBD2F6 /* snowunit button instructions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "snowunit button instructions.png"; path = "../../range images 2.0/snowunit button instructions.png"; sourceTree = "<group>"; };
-		4A5A42B3196E0FC80055F245 /* metricswitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metricswitch.png; sourceTree = SOURCE_ROOT; };
-		4A5A42B4196E0FC80055F245 /* usswitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usswitch.png; sourceTree = SOURCE_ROOT; };
+		4A5AE34319805B150072A60E /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		4A5AE34419805B150072A60E /* distance label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance label.png"; sourceTree = "<group>"; };
+		4A5AE34519805B150072A60E /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
+		4A5AE34619805B150072A60E /* final basketball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "final basketball.png"; sourceTree = "<group>"; };
+		4A5AE34719805B150072A60E /* final dumb golfer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "final dumb golfer.png"; sourceTree = "<group>"; };
+		4A5AE34819805B150072A60E /* final smart golfer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "final smart golfer.png"; sourceTree = "<group>"; };
+		4A5AE34919805B150072A60E /* greenbluebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenbluebackground.png; sourceTree = "<group>"; };
+		4A5AE34A19805B150072A60E /* height stand chest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "height stand chest.png"; sourceTree = "<group>"; };
+		4A5AE34B19805B150072A60E /* metricswitchbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metricswitchbtn.png; sourceTree = "<group>"; };
+		4A5AE34C19805B150072A60E /* pickerdarkbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickerdarkbackground.png; sourceTree = "<group>"; };
+		4A5AE34D19805B150072A60E /* snowflake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snowflake.png; sourceTree = "<group>"; };
+		4A5AE34E19805B150072A60E /* snowunit button instructions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snowunit button instructions.png"; sourceTree = "<group>"; };
+		4A5AE34F19805B150072A60E /* top of info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top of info.png"; sourceTree = "<group>"; };
+		4A5AE35019805B150072A60E /* usswitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usswitch.png; sourceTree = "<group>"; };
 		4A7C511A19228C1600CF373B /* InfoPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPage.h; sourceTree = "<group>"; };
 		4A7C511B19228C1600CF373B /* InfoPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPage.m; sourceTree = "<group>"; };
 		4A8E638019069C1F005762FE /* Range Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Range Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,8 +86,6 @@
 		4A8E63AA19069C1F005762FE /* Range FinderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Range FinderTests-Info.plist"; sourceTree = "<group>"; };
 		4A8E63AC19069C1F005762FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4A8E63AE19069C1F005762FE /* camtest2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = camtest2Tests.m; sourceTree = "<group>"; };
-		4AA98B9A197062FF003CD5BA /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dot.png; path = "../../range images 2.0/dot.png"; sourceTree = "<group>"; };
-		4AA98B9E19706649003CD5BA /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = "../../range images 2.0/back.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,25 +113,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4A556181196DBF8B0091D707 /* range images 2.0 */ = {
+		4A5AE34219805B150072A60E /* Finder 2.0 Images */ = {
 			isa = PBXGroup;
 			children = (
-				4A55619C196DC2040091D707 /* snowflake.png */,
-				4A5561A2196DC3960091D707 /* greenbluebackground.png */,
-				4A5561A4196DC4560091D707 /* distance label.png */,
-				4A5A42B3196E0FC80055F245 /* metricswitch.png */,
-				4A5A42B4196E0FC80055F245 /* usswitch.png */,
-				4AA98B9A197062FF003CD5BA /* dot.png */,
-				4AA98B9E19706649003CD5BA /* back.png */,
-				4A59B8691970CB8500BBD2F6 /* final basketball.png */,
-				4A59B86A1970CB8500BBD2F6 /* final dumb golfer.png */,
-				4A59B86B1970CB8500BBD2F6 /* final smart golfer.png */,
-				4A59B86C1970CB8500BBD2F6 /* height stand chest.png */,
-				4A59B86D1970CB8500BBD2F6 /* snowunit button instructions.png */,
-				4A1D35711971C8AA00913161 /* pickerdarkbackground.png */,
-				4A2F2DEA1971D62900E3C4D4 /* top of info.png */,
+				4A5AE34319805B150072A60E /* back.png */,
+				4A5AE34419805B150072A60E /* distance label.png */,
+				4A5AE34519805B150072A60E /* dot.png */,
+				4A5AE34619805B150072A60E /* final basketball.png */,
+				4A5AE34719805B150072A60E /* final dumb golfer.png */,
+				4A5AE34819805B150072A60E /* final smart golfer.png */,
+				4A5AE34919805B150072A60E /* greenbluebackground.png */,
+				4A5AE34A19805B150072A60E /* height stand chest.png */,
+				4A5AE34B19805B150072A60E /* metricswitchbtn.png */,
+				4A5AE34C19805B150072A60E /* pickerdarkbackground.png */,
+				4A5AE34D19805B150072A60E /* snowflake.png */,
+				4A5AE34E19805B150072A60E /* snowunit button instructions.png */,
+				4A5AE34F19805B150072A60E /* top of info.png */,
+				4A5AE35019805B150072A60E /* usswitch.png */,
 			);
-			path = "range images 2.0";
+			path = "Finder 2.0 Images";
 			sourceTree = "<group>";
 		};
 		4A8E637719069C1F005762FE = {
@@ -142,7 +142,7 @@
 				4A8E638219069C1F005762FE /* Frameworks */,
 				4A8E638119069C1F005762FE /* Products */,
 				4A8E639B19069C1F005762FE /* Images.xcassets */,
-				4A556181196DBF8B0091D707 /* range images 2.0 */,
+				4A5AE34219805B150072A60E /* Finder 2.0 Images */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,23 +290,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A5AE35E19805B150072A60E /* usswitch.png in Resources */,
+				4A5AE35919805B150072A60E /* metricswitchbtn.png in Resources */,
+				4A5AE35A19805B150072A60E /* pickerdarkbackground.png in Resources */,
+				4A5AE35219805B150072A60E /* distance label.png in Resources */,
+				4A5AE35819805B150072A60E /* height stand chest.png in Resources */,
+				4A5AE35519805B150072A60E /* final dumb golfer.png in Resources */,
+				4A5AE35119805B150072A60E /* back.png in Resources */,
+				4A5AE35D19805B150072A60E /* top of info.png in Resources */,
+				4A5AE35C19805B150072A60E /* snowunit button instructions.png in Resources */,
 				4A8E639C19069C1F005762FE /* Images.xcassets in Resources */,
-				4A59B8721970CB8500BBD2F6 /* snowunit button instructions.png in Resources */,
-				4A1D35721971C8AA00913161 /* pickerdarkbackground.png in Resources */,
+				4A5AE35419805B150072A60E /* final basketball.png in Resources */,
+				4A5AE35B19805B150072A60E /* snowflake.png in Resources */,
+				4A5AE35719805B150072A60E /* greenbluebackground.png in Resources */,
+				4A5AE35619805B150072A60E /* final smart golfer.png in Resources */,
+				4A5AE35319805B150072A60E /* dot.png in Resources */,
 				4A8E638E19069C1F005762FE /* InfoPlist.strings in Resources */,
-				4A2F2DEB1971D62900E3C4D4 /* top of info.png in Resources */,
-				4AA98B9F19706649003CD5BA /* back.png in Resources */,
-				4A59B8711970CB8500BBD2F6 /* height stand chest.png in Resources */,
-				4A59B86F1970CB8500BBD2F6 /* final dumb golfer.png in Resources */,
-				4A5561A5196DC4560091D707 /* distance label.png in Resources */,
-				4A59B8701970CB8500BBD2F6 /* final smart golfer.png in Resources */,
-				4AA98B9B197062FF003CD5BA /* dot.png in Resources */,
 				4A8E639719069C1F005762FE /* Main.storyboard in Resources */,
-				4A59B86E1970CB8500BBD2F6 /* final basketball.png in Resources */,
-				4A55619D196DC2040091D707 /* snowflake.png in Resources */,
-				4A5A42B6196E0FC80055F245 /* usswitch.png in Resources */,
-				4A5561A3196DC3960091D707 /* greenbluebackground.png in Resources */,
-				4A5A42B5196E0FC80055F245 /* metricswitch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

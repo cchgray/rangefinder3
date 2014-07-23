@@ -235,7 +235,7 @@
                                     <constraint firstAttribute="width" constant="64" id="eVq-U0-WOG"/>
                                     <constraint firstAttribute="height" constant="64" id="wvS-d6-KkT"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="metricswitch.png">
+                                <state key="normal" title="Button" image="metricswitchbtn.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -324,7 +324,7 @@
         <image name="distance label.png" width="463" height="130"/>
         <image name="dot.png" width="134" height="134"/>
         <image name="greenbluebackground.png" width="640" height="1136"/>
-        <image name="metricswitch.png" width="134" height="134"/>
+        <image name="metricswitchbtn.png" width="134" height="134"/>
         <image name="pickerdarkbackground.png" width="638" height="268"/>
         <image name="snowflake.png" width="134" height="134"/>
         <image name="top of info.png" width="593" height="144"/>
