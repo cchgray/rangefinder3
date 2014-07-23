@@ -11,76 +11,68 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface ViewController : UIViewController
 
-<UINavigationControllerDelegate, UIAccelerometerDelegate ,UIPickerViewDataSource, UIPickerViewDelegate>{
+
+<UINavigationControllerDelegate, UIAccelerometerDelegate>{
     
     //camera
     BOOL FrontCamera;
+    
     BOOL haveImage;
+    
     NSTimer *timer;
+    
     CMAttitude *referenceAttitude;
     
-    //picker
-    float switchHeight;
-
     //angle
     float angNumber;
-    int interger;
-    float q;
-    float d;
-    float chestLevel;
-    float caseInches;
-    float caseFeet;
-    NSString *string1;
-    NSString *string2;
-    NSNumber *inch;
-    NSNumber *ft;
-    int qInt;
     
+    float forCustomaryUnit;
+    
+    float forMetricUnit;
+    
+    int customaryUnitInt;
+    
+    int metricUnitInt;
     
 }
+
+@property (nonatomic) float chestLevelPassed;
+
 //camera
-
 @property(nonatomic, retain) AVCaptureStillImageOutput *stillImageOutput;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *captureImage;
-@property (nonatomic) UIInterfaceOrientation deviceOrientation;
 
-//picker
-
-@property (strong, nonatomic) NSArray *feetHeight;
-@property (strong, nonatomic) NSArray *inchHeight;
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerHeight;
-@property(readonly, nonatomic) CMAttitude *attitude;
-@property (nonatomic, readonly) CGFloat *height;
-
-@property (weak, nonatomic) IBOutlet UILabel *ftLabel;
-@property (weak, nonatomic) IBOutlet UILabel *inLabel;
-
-
-// images
-
-@property (weak, nonatomic) IBOutlet UIImageView *imageCrosshairs;
+// snowflake
 @property (weak, nonatomic) IBOutlet UIButton *snowflakePress;
-@property (weak, nonatomic) IBOutlet UILabel *holdLabel;
-
-
-//hide buttons
 
 - (IBAction)snowflakePressDown:(id)sender;
-- (IBAction)snowflakePressUp:(id)sender;
-- (IBAction)hidePicker:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *hidePicker;
 
+- (IBAction)snowflakePressUp:(id)sender;
+
+//Unit Changer Buttons
+@property (weak, nonatomic) IBOutlet UIButton *unitsFromUSbutton;
+
+@property (weak, nonatomic) IBOutlet UIButton *unitsFromMeticButton;
+
+- (IBAction)unitsFromMetric:(id)sender;
+
+- (IBAction)unitsFromCustomary:(id)sender;
+
+//display labels
 @property (weak, nonatomic) IBOutlet UILabel *distanceDisplay;
-@property (weak, nonatomic) IBOutlet UILabel *chooseHeight;
 
 @property (weak, nonatomic) IBOutlet UILabel *freezeDistanceDisplay;
-- (IBAction)infoButtonPress:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
+
 @end
 
 

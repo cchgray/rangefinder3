@@ -7,57 +7,52 @@
 //
 //hey dude
 #import "ViewController.h"
-#pragma mark - Delegate Methods
-#pragma mark - Datasource Methods
+
 
 @interface ViewController (){
+    
     CMMotionManager *motionManager;
+    
 }
 
 @end
 
-@implementation ViewController
-@synthesize stillImageOutput,  imageView, captureImage;
-@synthesize pickerHeight, feetHeight, inchHeight;
+@implementation ViewController 
 
+@synthesize stillImageOutput,  imageView, captureImage;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //picker code
-    self.feetHeight= [[NSArray alloc] initWithObjects:@"Choose", @"3", @"4", @"5", @"6", nil];
-    
-    
-    self.inchHeight = [[NSArray alloc] initWithObjects:@"Height", @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10",@"11", nil];
-    
-    self.distanceDisplay.text = @"Press Done";
-    _distanceDisplay.hidden = YES;
-    self.pickerHeight.backgroundColor = [UIColor whiteColor];
-    self.pickerHeight.dataSource = self;
-    self.pickerHeight.delegate = self;
-    _inLabel.hidden = YES;
-    _ftLabel.hidden = YES;
 
+    _unitsFromMeticButton.hidden = YES;
+    
     //angle code
     CMDeviceMotion *deviceMotion = motionManager.deviceMotion;
     CMAttitude *attitude = deviceMotion.attitude;
     referenceAttitude   = attitude;
     [motionManager startDeviceMotionUpdates];
+    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+
+    _distanceDisplay.hidden = NO;
+    _distanceDisplay.text = @"Choose Height!";
+    _freezeDistanceDisplay.hidden = YES;
     
+    // camera code
+    imageView.hidden = NO;
     
-    // freeze camera code
-	_imageCrosshairs.clipsToBounds = YES;
-    captureImage.hidden = YES;
     FrontCamera = NO;
+    
     captureImage.hidden = YES;
+    
     [self initializeCamera];
-    _holdLabel.hidden = YES;
     
 }
 
 
-    // camera code
+ 
+
+// camera code
 - (void) initializeCamera {
     
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
@@ -69,7 +64,7 @@
 	captureVideoPreviewLayer.frame = self.imageView.bounds;
 	[self.imageView.layer addSublayer:captureVideoPreviewLayer];
 	
-        UIView *view = [self imageView];
+    UIView *view = [self imageView];
     CALayer *viewLayer = [view layer];
     [viewLayer setMasksToBounds:YES];
     
@@ -88,11 +83,11 @@
         if ([device hasMediaType:AVMediaTypeVideo]) {
             
             if ([device position] == AVCaptureDevicePositionBack) {
-               // NSLog(@"Device position : back");
+             //   NSLog(@"Device position : back");
                 backCamera = device;
             }
             else {
-               // NSLog(@"Device position : front");
+          //      NSLog(@"Device position : front");
                 frontCamera = device;
             }
         }
@@ -102,7 +97,7 @@
         NSError *error = nil;
         AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
         if (!input) {
-           // NSLog(@"ERROR: trying to open camera: %@", error);
+          //  NSLog(@"ERROR: trying to open camera: %@", error);
         }
         [session addInput:input];
     }
@@ -111,7 +106,7 @@
         NSError *error = nil;
         AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:frontCamera error:&error];
         if (!input) {
-           // NSLog(@"ERROR: trying to open camera: %@", error);
+        //    NSLog(@"ERROR: trying to open camera: %@", error);
         }
         [session addInput:input];
     }
@@ -122,7 +117,7 @@
     
     [session addOutput:stillImageOutput];
     [session startRunning];
-    }
+}
 
 
 - (void) capImage { //method to capture image from AVCaptureSession video feed
@@ -155,13 +150,13 @@
 
 - (void) processImage:(UIImage *)image { //process captured image, crop, resize and rotate
     haveImage = YES;
-    #define DegreesToRadians(x) ((x) * M_PI / 180.0)
+#define DegreesToRadians(x) ((x) * M_PI / 180.0)
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) { //Device is ipad
         // Resize image
         UIGraphicsBeginImageContext(CGSizeMake(768, 1022));
         [image drawInRect: CGRectMake(0, 0, 768, 1022)];
         UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        //UIGraphicsEndImageContext();
         
         CGRect cropRect = CGRectMake(0, 130, 768, 768);
         CGImageRef imageRef = CGImageCreateWithImageInRect([smallImage CGImage], cropRect);
@@ -173,10 +168,10 @@
         
     }else{ //Device is iphone
         // Resize image
-        UIGraphicsBeginImageContext(CGSizeMake(320, 568));
+       UIGraphicsBeginImageContext(CGSizeMake(320, 568));
         [image drawInRect: CGRectMake(0, 0, 320, 568)];
         UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+       // UIGraphicsEndImageContext();
         
         CGRect cropRect = CGRectMake(0, 0, 320, 568);
         CGImageRef imageRef = CGImageCreateWithImageInRect([smallImage CGImage], cropRect);
@@ -185,287 +180,307 @@
         
         CGImageRelease(imageRef);
     }
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+        //NSLog(@"upside upright");
+        [UIView beginAnimations:@"rotate" context:nil];
+        [UIView setAnimationDuration:0.5];
+        captureImage.transform = CGAffineTransformMakeRotation(DegreesToRadians(0));
+        [UIView commitAnimations];
+    }
+    
 }
 
 // freeze camera and distanceDisplay
-
 - (IBAction)snowflakePressDown:(id)sender {
     
-    captureImage.hidden = NO; //show the captured image view
     imageView.hidden = YES; //hide the live video feed
-    [self capImage];
-    
-    
-    //pauses the distance
-    qInt = (int) q;
-    NSInteger feet = (NSInteger)q;
-    CGFloat fraction = q - feet;
-    NSInteger inches = (NSInteger)(12.0 * fraction);
-   // NSLog(@"%ld feet %ld inches", (long)feet,(long)inches);
-    
-    NSNumber *inch0 = [NSNumber numberWithInteger:inches];
-    
-    string2 = [NSString stringWithFormat:@"%@", inch0];
-    
-     NSNumber *ft0 = [NSNumber numberWithInteger:feet];
-    
-    string1 = [NSString stringWithFormat:@"%@", ft0];
-    
-   
-        self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ feet %@ inches", string1, string2];
     
     _distanceDisplay.hidden = YES;
+    
     _freezeDistanceDisplay.hidden = NO;
-    _holdLabel.hidden= NO;
+    
+    [self capImage];
+    
+    captureImage.hidden = NO; //show the captured image view
+    
+    //Customary freeze distance
+    forCustomaryUnit = _chestLevelPassed*tan(angNumber);
+    
+    forCustomaryUnit = forCustomaryUnit/3;
+    
+    forMetricUnit = forCustomaryUnit * .9144;
+    
+    if (!_unitsFromUSbutton.hidden) {
+        
+        NSString *string1;
+        
+        NSString *string2;
+        
+        NSInteger yards = (NSInteger)forCustomaryUnit;
+        
+        CGFloat fractionft = forCustomaryUnit - yards;
+        
+        NSInteger feet = (NSInteger)(3.0 * fractionft);
+        
+       // NSLog(@"%ld yards %ld feet", (long)yards ,(long)feet);
+        
+        NSNumber *feet0 = [NSNumber numberWithInteger:feet];
+        
+        string2 = [NSString stringWithFormat:@"%@", feet0];
+        
+        NSNumber *yd0 = [NSNumber numberWithInteger:yards];
+        
+        string1 = [NSString stringWithFormat:@"%@", yd0];
+        
+        if (forCustomaryUnit == 0){
+            
+            self.freezeDistanceDisplay.text = @"Enter Height!";
+        }
+        
+        else {
+            if (yards == 1 && feet != 1){
+                
+                self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ yard %@ feet", string1, string2];
+           
+            }
+            
+            else if (yards == 0 && feet != 1){
+            
+                self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ feet", string2];
+            
+            }
+            
+            else if (yards == 0 && feet == 1){
+                
+                self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ foot", string2];
+                
+            }
+            
+            else if (yards != 1 && feet == 1){
+                
+                self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ yards %@ foot", string1, string2];
+                
+            }
+            
+            else {
+            
+                self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ yards %@ feet", string1, string2];
+            
+            }
+        }
+        
+    }
+    //Mertic freeze Distance
+    else if (!_unitsFromMeticButton.hidden){
+        
+        NSString *string3;
+        
+        NSString *string4;
+        
+        metricUnitInt = forMetricUnit;
+        
+        NSInteger meters = (NSInteger)forMetricUnit;
+        
+        CGFloat fractionm = forMetricUnit - meters;
+        
+        NSInteger centiMeters = (NSInteger)(10.0 * fractionm);
+        
+        NSNumber *cm0 = [NSNumber numberWithInteger:centiMeters];
+        
+        string4 = [NSString stringWithFormat:@"%@", cm0];
+        
+        NSNumber *m0 = [NSNumber numberWithInteger:meters];
+        
+        string3 = [NSString stringWithFormat:@"%@", m0];
+        
+        if (forMetricUnit == 0) {
+            
+            self.freezeDistanceDisplay.text = @"Enter Height!";
+            
+        }
+        
+        else {
+            if (meters == 1){
+                
+            self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ meter %@0 cms", string3, string4];
+                
+            }
+            else if (meters == 0){
+                
+                self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@0 centimeters", string4];
+                
+            }
+            else if (centiMeters == 1){
+                
+                self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ meters %@0 cm", string3, string4];
+                
+            }
+            else if (centiMeters == 1 && meters == 1){
+                
+                self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ meter %@0 cm", string3, string4];
+                
+            }
+            else{
+                
+            self.freezeDistanceDisplay.text = [NSString stringWithFormat :@"%@ meters %@0 cms", string3, string4];
+            
+            }
+        }
+    }
    
 }
+
 
 - (IBAction)snowflakePressUp:(id)sender {
     captureImage.hidden = YES; //show the captured image view
+    
     imageView.hidden = NO; //hide the live video feed
+    
     [self initializeCamera];
+    
 	haveImage = NO;
+    
     _distanceDisplay.hidden = NO;
+    
     _freezeDistanceDisplay.hidden = YES;
-    _holdLabel.hidden = YES;
-}
-
-
-
-
-//pickercode
-#pragma mark Picker Delegate Methods
-
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-        if(component== 0)
-    {
-        return [self.feetHeight objectAtIndex:row];
-    }
-    else
-    {
-        return [self.inchHeight objectAtIndex:row];
-        
-    }
-   
-    return 0;
-    
-}
-
-#pragma mark Picker Data Source Methods
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    
-    return 2;
-    
-    
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-  
-    if(component== 0)
-    {
-        return [self.feetHeight count];
-    }
-    else if (component== 1)
-    {
-        return [self.inchHeight count];
-        
-    }
-    
-    return 0;
-}
-
-
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
-    
-    NSInteger firstComponentRow = [self.pickerHeight selectedRowInComponent:0];
-    NSInteger secondComponentRow = [self.pickerHeight selectedRowInComponent:1];
-   
-   
-    
-    
-    
-    switch(firstComponentRow) {
-        case 0:
-            caseFeet = 0;
-            _distanceDisplay.hidden = YES;
-            _chooseHeight.hidden = NO;
-            _ftLabel.hidden = YES;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            break;
-        case 1:
-            caseFeet = 3;
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _ftLabel.hidden = NO;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _ftLabel.hidden = NO;
-            break;
-        case 2:
-            caseFeet = 4;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _ftLabel.hidden = NO;
-            break;
-        case 3:
-            caseFeet = 5;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _ftLabel.hidden = NO;
-            break;
-        case 4:
-            caseFeet = 6;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _ftLabel.hidden = NO;
-            break;
-            
-    }
-    
-    switch(secondComponentRow)
-    {
-        case 0:
-            caseInches = 0;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = YES;
-            _chooseHeight.hidden = NO;
-            _inLabel.hidden = YES;
-            break;
-        case 1:
-            caseInches = 0;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 2:
-            caseInches = 0.08333333;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 3:
-            caseInches = .166666666;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 4:
-            caseInches = .25;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 5:
-            caseInches  = .33333333;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 6:
-            caseInches  = .41666666;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-        case 7:
-            caseInches = .5;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 8:
-            caseInches = .58333333;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 9:
-            caseInches = .66666666;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 10:
-            caseInches = .75;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 11:
-            caseInches  = .833333333;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-        case 12:
-            caseInches  = .916666666;
-            switchHeight = caseInches + caseFeet;
-            
-            chestLevel = (switchHeight * 0.9);
-            _distanceDisplay.hidden = NO;
-            _chooseHeight.hidden = YES;
-            _inLabel.hidden = NO;
-            break;
-    }
-    
-    
 }
 
 
 //anglecode
+-(void)GiveDistanceDisplay{
+    
+    forCustomaryUnit = _chestLevelPassed*tan(angNumber);
+    
+    forCustomaryUnit = forCustomaryUnit/3;
+    
+    forMetricUnit = forCustomaryUnit * .9144;
+    
+    if (!_unitsFromUSbutton.hidden) {
+        
+        NSString *string1;
+        
+        NSString *string2;
+        
+        NSInteger yards = (NSInteger)forCustomaryUnit;
+        
+        CGFloat fractionft = forCustomaryUnit - yards;
+        
+        NSInteger feet = (NSInteger)(3.0 * fractionft);
+        
+        //NSLog(@"%ld yards %ld feet", (long)yards ,(long)feet);
+        
+        NSNumber *feet0 = [NSNumber numberWithInteger:feet];
+        
+        string2 = [NSString stringWithFormat:@"%@", feet0];
+        
+        NSNumber *yd0 = [NSNumber numberWithInteger:yards];
+        
+        string1 = [NSString stringWithFormat:@"%@", yd0];
+        
+        if (forCustomaryUnit == 0){
+            
+            self.distanceDisplay.text = @"Enter Height!";
+        }
+        
+        else {
+            if (yards == 1 && feet != 1){
+                
+                self.distanceDisplay.text = [NSString stringWithFormat :@"%@ yard %@ feet", string1, string2];
+                
+            }
+            
+            else if (yards == 0 && feet != 1){
+                
+                self.distanceDisplay.text = [NSString stringWithFormat :@"%@ feet", string2];
+                
+            }
+            
+            else if (yards == 0 && feet == 1){
+                
+                self.distanceDisplay.text = [NSString stringWithFormat :@"%@ foot", string2];
+                
+            }
+            
+            else if (yards != 1 && feet == 1){
+                
+                self.distanceDisplay.text = [NSString stringWithFormat :@"%@ yards %@ foot", string1, string2];
+                
+            }
+            
+            else if (yards == 1 && feet == 1){
+                
+                self.distanceDisplay.text = [NSString stringWithFormat :@"%@ yard %@ foot", string1, string2];
+                
+            }
+            
+            else {
+                
+                self.distanceDisplay.text = [NSString stringWithFormat :@"%@ yards %@ feet", string1, string2];
+                
+            }
+        }
+        
+    }
+    
+    else if (!_unitsFromMeticButton.hidden){
+        
+        NSString *string3;
+        
+        NSString *string4;
+        
+        NSInteger meters = (NSInteger)forMetricUnit;
+        
+        CGFloat fractionm = forMetricUnit - meters;
+        
+        NSInteger centiMeters = (NSInteger)(10.0 * fractionm);
+        
+        NSLog(@"%ld meters %ld0 cms", (long)meters ,(long)centiMeters);
+        
+        NSNumber *cm0 = [NSNumber numberWithInteger:centiMeters];
+        
+        string4 = [NSString stringWithFormat:@"%@", cm0];
+        
+        NSNumber *m0 = [NSNumber numberWithInteger:meters];
+        
+        string3 = [NSString stringWithFormat:@"%@", m0];
+        
+        if (forMetricUnit == 0){
+            
+            self.distanceDisplay.text = @"Enter Height!";
+            
+        }
+        else {
+                if (meters == 1){
+                    
+                    self.distanceDisplay.text = [NSString stringWithFormat :@"%@ meter %@0 cms", string3, string4];
+                    
+                }
+                else if (meters == 0){
+                
+                self.distanceDisplay.text = [NSString stringWithFormat :@"%@0 cms", string4];
+                
+                }
+                else if (centiMeters == 1){
+                    
+                    self.distanceDisplay.text = [NSString stringWithFormat :@"%@ meters %@0 cm", string3, string4];
+                    
+                }
+                else if (centiMeters == 1 && meters == 1){
+                    
+                    self.distanceDisplay.text = [NSString stringWithFormat :@"%@ meter %@0 cm", string3, string4];
+                    
+                }
+                else{
+                    
+                    self.distanceDisplay.text = [NSString stringWithFormat :@"%@ meters %@0 cms", string3, string4];
+                    
+                }
+            
+        }
+    }
+    
 
+}
 
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
@@ -474,84 +489,44 @@
     float yy = -[acceleration y];
 	float angle = atan2(zz, yy);
     
-    if (!pickerHeight.hidden){
-        self.distanceDisplay.text = @"Press Done";
-    }
-        else {
-    if(angle <= -0.1 && angle >= -1.57269){
+    
+        if(angle <= -0.1 && angle >= -1.57269){
         
-        angNumber = angle - 1.57269;
-        
-        q = chestLevel*tan(angNumber);
-      
-        NSInteger feet = (NSInteger)q;
-        CGFloat fraction = q - feet;
-        NSInteger inches = (NSInteger)(12.0 * fraction);
-      //  NSLog(@"%ld feet %ld inches", (long)feet,(long)inches);
-        
-        NSNumber *inch0 = [NSNumber numberWithInteger:inches];
-        
-        string2 = [NSString stringWithFormat:@"%@", inch0];
-        
-        NSNumber *ft0 = [NSNumber numberWithInteger:feet];
-        
-        string1 = [NSString stringWithFormat:@"%@", ft0];
-        
-        if (feet + inches == 0){
-            self.distanceDisplay.text = @"Choose Height!";
+            angNumber = angle - 1.57269;
+            [self GiveDistanceDisplay];
         }
-        else {
-            self.distanceDisplay.text = [NSString stringWithFormat :@"%@ feet %@ inches", string1, string2];
-        }
-        
-    }
     
     else if((angle <= -1.57269 && angle >= -3.1459265) || (angle >= 2.35619449019 && angle <= 3.1459265))
 	{
 		
         [_distanceDisplay setText:@"Aim In Front!"];
-        [_freezeDistanceDisplay setText:@"Aim In Front!"];
 		
 	}
-	else if(angle >= -0.2 && angle <= 2.35619449019)
+	else if(angle >= -0.1 && angle <= 2.35619449019)
 	{
 		
         [_distanceDisplay setText:@"Don't Aim Up!"];
-        [_freezeDistanceDisplay setText:@"Don't Aim Up!"];
-        
 		
     }
-        }
+}
+    
+
+
+- (IBAction)unitsFromMetric:(id)sender {
+    
+    _unitsFromUSbutton.hidden = NO;
+    
+    _unitsFromMeticButton.hidden = YES;
     
 }
 
-// hide hieght picker
 
-- (IBAction)hidePicker:(id)sender {
+-(IBAction)unitsFromCustomary:(id)sender{
     
- 
-    if ((pickerHeight.hidden)) {
-        
-        pickerHeight.hidden = !pickerHeight.hidden;
-        
-        _ftLabel.hidden = NO;
-        _inLabel.hidden = NO;
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
-       
-    
-    } else if (!pickerHeight.hidden){
-        
-        pickerHeight.hidden = !pickerHeight.hidden;
-        
-        _ftLabel.hidden = YES;
-        _inLabel.hidden = YES;
-        [sender setTitle:@"Height" forState:UIControlStateNormal];
-        [[UIAccelerometer sharedAccelerometer] setDelegate:self];
-        
-    }
+    _unitsFromUSbutton.hidden = YES;
+
+    _unitsFromMeticButton.hidden = NO;
     
 }
 
-- (IBAction)infoButtonPress:(id)sender {
-}
     @end

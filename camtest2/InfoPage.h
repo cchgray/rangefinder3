@@ -8,9 +8,38 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InfoPage : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UIButton *backButtonPress;
-@property (weak, nonatomic) IBOutlet UITextView *infoText;
+
+@interface InfoPage : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>{
+    
+    float switchHeight;
+    
+    float caseInches;
+    
+    float caseFeet;
+    
+    float chestLevel;
+}
+
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *swipeLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *swipeLabelBackground;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *InstructionsScrollView;
+
+//picker code
+@property (strong, nonatomic) NSArray *feetHeight;
+
+@property (strong, nonatomic) NSArray *inchHeight;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerHeight;
+
+@property (nonatomic, readonly) CGFloat *height;
+
+@property (weak, nonatomic) IBOutlet UILabel *ftLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *inLabel;
+
 
 @end

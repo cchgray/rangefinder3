@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic) float chestLevel;
+
+
 @end
